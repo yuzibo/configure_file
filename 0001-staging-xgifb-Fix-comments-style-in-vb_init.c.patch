@@ -1,32 +1,40 @@
-From 3dd1765fd69343dd49b6517815986bd5223d7520 Mon Sep 17 00:00:00 2001
+From 4125b9273907486b5f41255030410ea7dee4d19f Mon Sep 17 00:00:00 2001
 From: YU BO <tsu.yubo@gmail.com>
-Date: Tue, 23 Feb 2016 23:28:59 +0800
+Date: Wed, 24 Feb 2016 20:57:55 +0800
 Subject: [PATCH] staging: xgifb: Fix comments style in vb_init.c
 
 Fix comments to use trailing */ on separate lines.
 
 Signed-off-by: YU BO <tsu.yubo@gmail.com>
 ---
- drivers/staging/xgifb/vb_init.c |    6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+ drivers/staging/xgifb/vb_init.c |   14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
 
 diff --git a/drivers/staging/xgifb/vb_init.c b/drivers/staging/xgifb/vb_init.c
-index 26b539b..4cb9ff4 100644
+index 4cb9ff4..8fc8a95 100644
 --- a/drivers/staging/xgifb/vb_init.c
 +++ b/drivers/staging/xgifb/vb_init.c
-@@ -354,8 +354,10 @@ static void XGINew_DDR2_DefaultRegister(
- {
- 	unsigned long P3d4 = Port, P3c4 = Port - 0x10;
-
--	/* keep following setting sequence, each setting in
--	 * the same reg insert idle */
-+	/*
-+	 * keep following setting sequence, each setting in
-+	 * the same reg insert idle
-+	 */
- 	xgifb_reg_set(P3d4, 0x82, 0x77);
- 	xgifb_reg_set(P3d4, 0x86, 0x00);
- 	xgifb_reg_get(P3d4, 0x86); /* Insert read command for delay */
+@@ -700,13 +700,13 @@ static void XGINew_CheckChannel(struct xgi_hw_device_info *HwDeviceExtension,
+ 		xgifb_reg_set(pVBInfo->P3c4, 0x14, 0x51); /* 32Mx16 bit*/
+ 		break;
+ 	case XG42:
+-		/*
+-		 XG42 SR14 D[3] Reserve
+-		 D[2] = 1, Dual Channel
+-		 = 0, Single Channel
+-
+-		 It's Different from Other XG40 Series.
+-		 */
++	       /*
++		* XG42 SR14 D[3] Reserve
++		* D[2] = 1, Dual Channel
++		* = 0, Single Channel
++		*
++		* It's Different from Other XG40 Series.
++		*/
+ 		if (XGINew_CheckFrequence(pVBInfo) == 1) { /* DDRII, DDR2x */
+ 			pVBInfo->ram_bus = 32; /* 32 bits */
+ 			pVBInfo->ram_channel = 2; /* 2 Channel */
 --
 1.7.10.4
 
