@@ -1,0 +1,2 @@
+ sudo apt-get install gcc make binutils gawk x11-utils rpm build-essential libaio1 libaio-dev libmotif4 libtool expat alien ksh pdksh unixODBC unixODBC-dev sysstat elfutils libelf-dev binutils  lsb-cxx libstdc++5  libmotif4 libmotif-common  libstdc++5 libmotif-dev expat pdksh  sysstat libtool  libmotif4 pcb-lesstif libdb4.6 
+# 没有lesstif2 用 pcb-lesstif代替
