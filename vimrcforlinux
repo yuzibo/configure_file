@@ -1,4 +1,8 @@
+"16-05：根据这里重新将源文件模板重新定义
+"https://gitlab.com/meonkeys/dotvim/blob/0ee86db549bf42e531439cfbfb386344835f4fa7/vimrc"
+
 "    /etc/vim/vimrc 是所有用户的配置，~/.vimrc只影响到单个用户。 /usr/share/vim/vimrc是/etc/vim/vimrc的一个硬链接（$ ll /usr/share/vim/vimrc 就可以看到），一般只修改~/.vimrc就行了。
+"
   " colors,plugins,docs都是在VIMRUNTIME目录下的，你可以先在vim的命令模式下输入:echo $VIMRUNTIME（如果没有自己另行修改，一般是/usr/share/vim/vim7x）,然后把你下载的molokai.vim复制到下面的colors文件夹里。
     "切换颜色方案:colorscheme molokai(only for once),也可以添加到.vimrc里(every time)，要退出重启后才生效。
 colorscheme evening"我放在74xiamian,应该放在73
@@ -8,10 +12,10 @@ set nu
 "set go=  去掉工具栏了：
 setlocal fo+=aw
 syntax on  "代码高亮
-autocmd InsertLeave * se nocul  " 用浅色高亮当前行  
-autocmd InsertEnter * se cul    " 用浅色高亮当前行  
-set ruler           " 显示标尺  
-set showcmd         " 输入的命令显示出来，看的清楚些  
+autocmd InsertLeave * se nocul  " 用浅色高亮当前行
+autocmd InsertEnter * se cul    " 用浅色高亮当前行
+set ruler           " 显示标尺
+set showcmd         " 输入的命令显示出来，看的清楚些
 " 在处理未保存或只读文件的时候，弹出确认
 set confirm
 " 自动缩进
@@ -48,9 +52,9 @@ set autoread
 autocmd FileType c,cpp map <buffer> <leader><space> :w<cr>:make<cr>
 "代码补全
 set completeopt=preview,menu
-"允许插件  
+"允许插件
 filetype plugin on
-"共享剪贴板  
+"共享剪贴板
 set clipboard+=unnamed
 set smartindent          "智能对齐
 
@@ -103,13 +107,13 @@ set matchtime=1
 " 光标移动到buffer的顶部和底部时保持3行距离
 set scrolloff=3
 " 为C程序提供自动缩进
-set novisualbell    " 不要闪烁(不明白)  
-set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ %{strftime(\"%d/%m/%y\ -\ %H:%M\")}   "状态行显示的内容  
-set laststatus=1    " 启动显示状态行(1),总是显示状态行(2)  
-set foldenable      " 允许折叠  
-set foldmethod=manual   " 手动折叠  
+set novisualbell    " 不要闪烁(不明白)
+set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ %{strftime(\"%d/%m/%y\ -\ %H:%M\")}   "状态行显示的内容
+set laststatus=1    " 启动显示状态行(1),总是显示状态行(2)
+set foldenable      " 允许折叠
+set foldmethod=manual   " 手动折叠
 "set background=dark "背景使用黑色
-set nocompatible  "去掉讨厌的有关vi一致性模式，避免以前版本的一些bug和局限  
+set nocompatible  "去掉讨厌的有关vi一致性模式，避免以前版本的一些bug和局限
 " 显示中文帮助
 if version >= 603
     set helplang=cn
@@ -123,38 +127,65 @@ set fileencodings=ucs-bom,utf-8,cp936
 set fileencoding=utf-8
 "为了mutt新加的
 "set fileencoding=gd2312
+autocmd BufNewFile *.pl call <SID>SetupNewPerlFile()
+function s:SetupNewPerlFile()
+	    execute "normal i#!/usr/bin/perl -w\<C-M>\<C-C>xiuse strict;\<C-M>\<C-C>xo"
+    endfunction
+    ""
+autocmd BufNewFile *.pl exec ":call SetTitle2()"
+func SetTitle2()
+	if &filetype == 'pl'
+        call setline(1,"\#########################################################################")
 
+endif
 
+    autocmd BufNewFile * normal G
+endfunc
 "新建.c,.h,.sh,.java文件，自动插入文件头
-autocmd BufNewFile *.cpp,*.[ch],*.sh,*.java exec ":call SetTitle()"
+autocmd BufNewFile *.[pl],*.cpp,*.[ch],*.sh,*.java exec ":call SetTitle()"
 ""定义函数SetTitle，自动插入文件头
 func SetTitle()
     "如果文件类型为.sh文件
     if &filetype == 'sh'
         call setline(1,"\#########################################################################")
         call append(line("."), "\# File Name: ".expand("%"))
-        call append(line(".")+1, "\# Author: yubo")
-        call append(line(".")+2, "\# mail: yuzibode@126.com")
+        call append(line(".")+1, "\# Author: Bo Yu")
+        call append(line(".")+2, "\# mail: tsu.yubo@gmail.com")
         call append(line(".")+3, "\# Created Time: ".strftime("%c"))
-        call append(line(".")+4, "\#########################################################################")
+        call append(line(".")+4, "\##########################################################################")
         call append(line(".")+5, "\#!/bin/bash")
         call append(line(".")+6, "")
-    else
-        call setline(1, "/*************************************************************************")
-        call append(line("."), "     File Name: ".expand("%"))
-        call append(line(".")+1, "     Author: yubo")
-        call append(line(".")+2, "     Mail: yuzibode@126.com ")
-        call append(line(".")+3, "     Created Time: ".strftime("%c"))
-        call append(line(".")+4, " ************************************************************************/")
-        call append(line(".")+5, "")
-    endif
-    if &filetype == 'cpp'
-        call append(line(".")+6, "#include<iostream>")
-        call append(line(".")+7, "using namespace std;")
-        call append(line(".")+8, "")
-    endif
-    if &filetype == 'c'
-        call append(line(".")+6, "#include<stdio.h>")
+endif
+if &filetype == 'py'
+        call setline(1,"\#########################################################################")
+        call append(line("."), "\# File Name: ".expand("%"))
+        call append(line(".")+1, "\# Author: Bo Yu")
+        call append(line(".")+2, "\# mail: tsu.yubo@gmail.com")
+        call append(line(".")+3, "\# Created Time: ".strftime("%c"))
+        call append(line(".")+4, "\##########################################################################")
+        call append(line(".")+5, "\#!/usr/bin/perl -w")
+	call append(line(".")+6, "use strict;")
+        call append(line(".")+7, "")
+endif
+     if  &filetype == 'c'
+        call setline(1, "/*")
+        call append(line("."), " *     File Name: ".expand("%"))
+        call append(line(".")+1, " *     Author: Bo Yu")
+        call append(line(".")+2, " *     Mail: tsu.yubo@gmail.com ")
+        call append(line(".")+3, " *     Created Time: ".strftime("%c"))
+        call append(line(".")+4, " */")
+        call append(line(".")+5, "#include<stdio.h>")
+        call append(line(".")+6, "")
+endif
+     if &filetype == 'cpp'
+        call setline(1, "/*")
+        call append(line("."), " *     File Name: ".expand("%"))
+        call append(line(".")+1, " *     Author: Bo Yu")
+        call append(line(".")+2, " *     Mail: tsu.yubo@gmail.com ")
+        call append(line(".")+3, " *     Created Time: ".strftime("%c"))
+        call append(line(".")+4, " */")
+        call append(line(".")+5, "#include<iostream>")
+        call append(line(".")+6, "using namespace std;")
         call append(line(".")+7, "")
     endif
     "新建文件后，自动定位到文件末尾
@@ -175,14 +206,14 @@ map <F12> gg=G
 vmap <C-c> "+y
 "去空行   在命令行下，按F2
 nnoremap <F2> :g/^\s*$/d<CR>
-"比较文件  
+"比较文件
 nnoremap <C-F2> :vert diffsplit
-"新建标签  
-map <M-F2> :tabnew<CR>  
-"列出当前目录文件  
-map <F3> :tabnew .<CR>  
-"打开树状文件目录  
-map <C-F3> \be  
+"新建标签
+map <M-F2> :tabnew<CR>
+"列出当前目录文件
+map <F3> :tabnew .<CR>
+"打开树状文件目录
+map <C-F3> \be
 "C，C++ 按F5编译运行
 map <F5> :call CompileRunGcc()<CR>
 func! CompileRunGcc()
@@ -238,19 +269,19 @@ filetype plugin indent on
 "打开文件类型检测, 加了这句才可以用智能补全
 set completeopt=longest,menu
 
-" CTags的设定  
+" CTags的设定
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let Tlist_Sort_Type = "name"    " 按照名称排序  
-let Tlist_Use_Right_Window = 1  " 在右侧显示窗口  
-let Tlist_Compart_Format = 1    " 压缩方式  
-let Tlist_Exist_OnlyWindow = 1  " 如果只有一个buffer，kill窗口也kill掉buffer  
-let Tlist_File_Fold_Auto_Close = 0  " 不要关闭其他文件的tags  
-let Tlist_Enable_Fold_Column = 0    " 不要显示折叠树  
-"autocmd FileType java set tags+=D:\tools\java\tags  
-"autocmd FileType h,cpp,cc,c set tags+=D:\tools\cpp\tags  
+let Tlist_Sort_Type = "name"    " 按照名称排序
+let Tlist_Use_Right_Window = 1  " 在右侧显示窗口
+let Tlist_Compart_Format = 1    " 压缩方式
+let Tlist_Exist_OnlyWindow = 1  " 如果只有一个buffer，kill窗口也kill掉buffer
+let Tlist_File_Fold_Auto_Close = 0  " 不要关闭其他文件的tags
+let Tlist_Enable_Fold_Column = 0    " 不要显示折叠树
+"autocmd FileType java set tags+=D:\tools\java\tags
+"autocmd FileType h,cpp,cc,c set tags+=D:\tools\cpp\tags
 "let Tlist_Show_One_File=1            "不同时显示多个文件的tag，只显示当前文件的
-"设置tags  
-set tags=tags;  
+"设置tags
+set tags=tags;
 set autochdir
 
 "其他东东
