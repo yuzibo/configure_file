@@ -2,16 +2,16 @@
 #关于msmtp的设置
 #set sendmail=/usr/bin/msmtp
 set use_from=yes
-set realname="YU Bo"
+set realname="Bo Yu"
 
 set from=tsu.yubo@gmail.com
 #set envelope_from=yes
 #设置Gmail账户和密码,imap和gmail
-set imap_user = "tsu.xubx@gmail.com"
-set imap_pass = "xioeojptrupncdwx"
+set imap_user = "tsu.yubo@gmail.com"
+set imap_pass = "vioeojptrupncdwi"
 set smtp_url = "smtps://tsu.yubo@smtp.gmail.com:465/"
 set smtp_pass = $imap_pass
- 
+
 #设置远程服务器和文件夹
 set folder = "imaps://imap.gmail.com:993"
 set spoolfile = "+INBOX"
@@ -30,7 +30,7 @@ subscribe netdev@vger.kernel.org
 set pager_index_lines=8
 
 set auto_tag =yes
-hdr_order from to subject date  
+hdr_order from to subject date
 
 
 
