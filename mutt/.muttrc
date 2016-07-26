@@ -6,9 +6,9 @@ set realname="YU Bo"
 
 set from=tsu.yubo@gmail.com
 #set envelope_from=yes
-#设置Gmail账户和密码,imap和gmail
+#设置Gmail账户和密码,imap和gmail,已改，大->小
 set imap_user = "tsu.yubo@gmail.com"
-set imap_pass = "vioeojptrupncdwi"
+set imap_pass = "vioeojptrupncdwR"
 set smtp_url = "smtps://tsu.yubo@smtp.gmail.com:465/"
 set smtp_pass = $imap_pass
 
