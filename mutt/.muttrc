@@ -2,13 +2,13 @@
 #关于msmtp的设置
 #set sendmail=/usr/bin/msmtp
 set use_from=yes
-set realname="Bo Yu"
+set realname="YU Bo"
 
 set from=tsu.yubo@gmail.com
 #set envelope_from=yes
 #设置Gmail账户和密码,imap和gmail
 set imap_user = "tsu.yubo@gmail.com"
-set imap_pass = "yioeojptrupncdwu"
+set imap_pass = "vioeojptrupncdwi"
 set smtp_url = "smtps://tsu.yubo@smtp.gmail.com:465/"
 set smtp_pass = $imap_pass
 
@@ -25,7 +25,7 @@ set certificate_file=~/Mail/certificates
 set quit = ask-yes
 #告知mutt订阅的邮件
 #subscribe linux-kernel@vger.kernel.org lkml
-subscribe netdev@vger.kernel.org
+#subscribe netdev@vger.kernel.org
 #留出多少行显示邮件列表
 set pager_index_lines=8
 
@@ -95,7 +95,7 @@ set rfc2047_parameters=yes
 set send_charset="utf-8:us-ascii:gb2312"
 
 #auto view html
-auto_view text/html
+auto_view  text/x-vcard text/html test/enriched
 # 排序
 set sort=threads
 set sort_aux=reverse-last-date
@@ -113,7 +113,7 @@ set alias_file=~/Mail/.mutt.alias
 #color status  white blue
 color status black green
 #当前行
-color indicator green magenta
+color indicator green blue
 #message head
 color hdrdefault  white blue
 color tilde default white
@@ -129,5 +129,6 @@ set header=no
 # 请把这里的小括号()改成中括号<> :(
 my_hdr From:  <tsu.yubo@gmail.com>
 
-
+# 设置键绑定 ,为了使用urlview.
+macro pager \cb <pipe-entry>'urlview'<enter> 'Follow links with urlview'
 
