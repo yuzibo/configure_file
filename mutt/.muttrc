@@ -6,9 +6,9 @@ set realname="YU Bo"
 
 set from=tsu.yubo@gmail.com
 #set envelope_from=yes
-#设置Gmail账户和密码,imap和gmail,已改，大->小
+#设置Gmail账户和密码,imap和gmail
 set imap_user = "tsu.yubo@gmail.com"
-set imap_pass = "vioeojptrupncdwR"
+set imap_pass = "vioeojptrupncdwi"
 set smtp_url = "smtps://tsu.yubo@smtp.gmail.com:465/"
 set smtp_pass = $imap_pass
 
@@ -130,5 +130,7 @@ set header=no
 my_hdr From:  <tsu.yubo@gmail.com>
 
 # 设置键绑定 ,为了使用urlview.
-macro pager \cb <pipe-entry>'urlview'<enter> 'Follow links with urlview'
+#macro pager \cb <pipe-entry>'urlview'<enter> 'Follow links with urlview'
+macro index,pager \cb "<pipe-message> urlscan<enter>" "call urlscan to extract URLs out of a message"
+macro attach,compose \cb "<pipe-entry> urlscan<enter>" "call urlscan to extract URLs out of a message"
 
