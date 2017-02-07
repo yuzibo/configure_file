@@ -6,6 +6,7 @@
 ##########################################################################
 #!/bin/bash
 sudo apt-get update && apt-get install python-pip python-setuptools m2crypto
-&& pip install shadowsochs
+sudo
+pip install shadowsochs
 
 
