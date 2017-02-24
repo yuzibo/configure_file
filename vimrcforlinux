@@ -285,6 +285,15 @@ endfunction
 filetype plugin indent on
 "打开文件类型检测, 加了这句才可以用智能补全
 set completeopt=longest,menu
+" 为了减少Caps Lock的影响，在插入模式下使用Ctrl + ^去代替Caps Lock
+" 并在离开插入模式时自动关闭Caps Lock"
+" Execute 'lnoremap x X' and 'lnoremap X x' for each letter a-z.
+for c in range(char2nr('A'), char2nr('Z'))
+  execute 'lnoremap ' . nr2char(c+32) . ' ' . nr2char(c)
+  execute 'lnoremap ' . nr2char(c) . ' ' . nr2char(c+32)
+endfor
+" Kill the capslock when leaving insert mode.
+autocmd InsertLeave * set iminsert=0
 
 " CTags的设定
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
