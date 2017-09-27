@@ -1,0 +1,3 @@
+Hello, This is dir to use busybox make initramfs to boot linux kernel, please refer to this article:
+
+[My message](http://www.aftermath.cn/busybox_qemu_kernel.html)
