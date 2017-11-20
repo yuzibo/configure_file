@@ -127,36 +127,29 @@ set fileencodings=ucs-bom,utf-8,cp936
 set fileencoding=utf-8
 "为了mutt新加的
 "set fileencoding=gd2312
+"New add *.pl, *.md, *.py
 autocmd BufNewFile *.pl call <SID>SetupNewPerlFile()
 function s:SetupNewPerlFile()
 	    execute "normal i#!/usr/bin/perl -w\<C-M>\<C-C>xiuse strict;\<C-M>\<C-C>xo"
-    endfunction
-    ""
-autocmd BufNewFile *.pl exec ":call SetTitle2()"
-func SetTitle2()
-	if &filetype == 'pl'
-        call setline(1,"\#########################################################################")
-endif
     autocmd BufNewFile * normal G
-endfunc
+endfunction
 
 autocmd BufNewFile *.md call <SID>SetupNewMdFile()
 function s:SetupNewMdFile()
 	    execute "normal i---\<C-M>\<C-C>xititle: \<C-M>\<C-C>xicategory: \<C-M>\<C-C>xilayout: \<C-M>\<C-C>xi---"
-    endfunction
-autocmd BufNewFile *.md exec ":call SetupNewMdFile2()"
-func SetupNewMdFile2()
-	if &filetype == 'md'
-
-        call setline(1,"\---")
-        call append(line("."), "\title: " )
-        call append(line(".")+1, "\layout: ")
-	call append(line(".")+2, "\category: ")
-        call append(line(".")+3, "\---")
-endif
-
     autocmd BufNewFile * normal G
-endfunc
+endfunction
+" new create python file
+autocmd BufNewFile *.py call <SID>SetupNewPyFile()
+function s:SetupNewPyFile()
+	execute "normal i#!/usr/bin/python\<C-M>\<C-C>xi# -*- coding: UTF-8 -*-"
+	call append(line("."), "\# File Name: ".expand("%"))
+        call append(line(".")+1, "\# Author: Bo Yu")
+        call append(line(".")+2, "\# mail: tsu.yubo@gmail.com")
+        call append(line(".")+3, "\# Created Time: ".strftime("%c"))
+	autocmd BufNewFile * normal G
+endfunction
+
 
 "新建.c,.h,.sh,.java文件，自动插入文件头
 autocmd BufNewFile *.[pl],*.cpp,*.[ch],*.sh,*.java exec ":call SetTitle()"
@@ -173,17 +166,6 @@ func SetTitle()
         call append(line(".")+5, "\#!/bin/bash")
         call append(line(".")+6, "")
 endif
-if &filetype == 'py'
-        call setline(1,"\#########################################################################")
-        call append(line("."), "\# File Name: ".expand("%"))
-        call append(line(".")+1, "\# Author: Bo Yu")
-        call append(line(".")+2, "\# mail: tsu.yubo@gmail.com")
-        call append(line(".")+3, "\# Created Time: ".strftime("%c"))
-        call append(line(".")+4, "\##########################################################################")
-        call append(line(".")+5, "\#!/usr/bin/perl -w")
-	call append(line(".")+6, "use strict;")
-        call append(line(".")+7, "")
-endif
      if  &filetype == 'c'
         call setline(1, "/*")
         call append(line("."), " *     File Name: ".expand("%"))
@@ -191,7 +173,7 @@ endif
         call append(line(".")+2, " *     Mail: tsu.yubo@gmail.com ")
         call append(line(".")+3, " *     Created Time: ".strftime("%c"))
         call append(line(".")+4, " */")
-        call append(line(".")+5, "#include<stdio.h>")
+        call append(line(".")+5, "#include <stdio.h>")
         call append(line(".")+6, "")
 endif
      if &filetype == 'cpp'
