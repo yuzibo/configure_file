@@ -5,7 +5,10 @@
 "
   " colors,plugins,docs都是在VIMRUNTIME目录下的，你可以先在vim的命令模式下输入:echo $VIMRUNTIME（如果没有自己另行修改，一般是/usr/share/vim/vim7x）,然后把你下载的molokai.vim复制到下面的colors文件夹里。
     "切换颜色方案:colorscheme molokai(only for once),也可以添加到.vimrc里(every time)，要退出重启后才生效。
-colorscheme evening"我放在74xiamian,应该放在73
+colorscheme eldar "我放在74xiamian,应该放在73
+" located in .vim/colors folder
+" i have installed cobalt, eldar
+
 let autosave=3
 "set background=dark "背景使用黑色
 set nu
@@ -139,6 +142,7 @@ function s:SetupNewMdFile()
 	    execute "normal i---\<C-M>\<C-C>xititle: \<C-M>\<C-C>xicategory: \<C-M>\<C-C>xilayout: \<C-M>\<C-C>xi---"
     autocmd BufNewFile * normal G
 endfunction
+
 " new create python file
 autocmd BufNewFile *.py call <SID>SetupNewPyFile()
 function s:SetupNewPyFile()
@@ -174,7 +178,9 @@ endif
         call append(line(".")+3, " *     Created Time: ".strftime("%c"))
         call append(line(".")+4, " */")
         call append(line(".")+5, "#include <stdio.h>")
-        call append(line(".")+6, "")
+	call append(line(".")+6, "#include <stdlib.h>")
+        call append(line(".")+7, "#include <unistd.h>")
+	call append(line(".")+8, "")
 endif
      if &filetype == 'cpp'
         call setline(1, "/*")
@@ -183,7 +189,7 @@ endif
         call append(line(".")+2, " *     Mail: tsu.yubo@gmail.com ")
         call append(line(".")+3, " *     Created Time: ".strftime("%c"))
         call append(line(".")+4, " */")
-        call append(line(".")+5, "#include<iostream>")
+        call append(line(".")+5, "#include <iostream>")
         call append(line(".")+6, "using namespace std;")
         call append(line(".")+7, "")
     endif
