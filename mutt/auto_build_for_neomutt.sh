@@ -12,7 +12,7 @@ mkdir ~/.mutt
 echo "create account in .mutt: qq, 126, gmail\n"
 echo "pleasee remember fill with password\n"
 
-cp account/* ~/.mutt/*
+cp account/* ~/.mutt/
 
 echo "create alias for neomutt"
 cp mutt.alias ~/.mutt.alias
