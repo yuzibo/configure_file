@@ -1,0 +1,26 @@
+set realname="Bo YU"
+set use_from=yes
+
+set from=yuzibode@126.com
+set envelope_from=yes
+set smtp_auth_user= $from
+set smtp_auth_type = "PLAIN"
+# 设置smtp服务器
+set smtp_url = "smtp://yuzibode@smtp.126.com:25"
+set smtp_pass = ""
+set ssl_starttls = yes
+set ssl_force_tls = yes
+set smtp_authenticators = "PLAIN"
+
+#设置远程服务器和文件夹
+set imap_user = "yuzibode@126.com"
+set imap_pass = ""
+set folder = "imaps://imap.126.com:993"
+set imap_keepalive = 300
+set mail_check = 120
+
+set spoolfile = "+收件箱"
+set postponed="+[126]/Drafts"
+#set record = "+[126]/收件箱"
+mailboxes = +INBOX
+set certificate_file=~/Mail/certificates

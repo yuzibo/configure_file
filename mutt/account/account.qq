@@ -1,0 +1,28 @@
+set realname="Bo YU"
+set use_from=yes
+
+set from=357130479@qq.com
+set envelope_from=yes
+set smtp_auth_user= $from
+#set smtp_auth = "LOGIN"
+#设置Gmail账户和密码,imap和gmail
+set smtp_url = "smtp://357130479@smtp.qq.com:587/"
+set smtp_pass = ""
+set ssl_starttls = yes
+set ssl_force_tls = yes
+#set smtp_authenticators = "PLAIN"
+#set smtp_url = "smtp://smtp.126.com:25"
+
+#设置远程服务器和文件夹
+set imap_user = "357130479@qq.com"
+set imap_pass = ""
+set folder = "imaps://imap.qq.com:993"
+#set imap_auth_type = "LOGIN"
+set imap_keepalive = 300
+set mail_check = 120
+
+set spoolfile = "+收件箱"
+set postponed="+[qq]/Drafts"
+#set record = "+[qq]/收件箱"
+mailboxes = +INBOX
+set certificate_file=~/Mail/certificates

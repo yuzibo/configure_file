@@ -1,0 +1,88 @@
+#=====================
+#关于msmtp的设置
+#set sendmail=/usr/bin/msmtp
+set use_from=yes
+set realname="YU Bo"
+
+set from=tsu.yubo@gmail.com
+#set envelope_from=yes
+#设置Gmail账户和密码,imap和gmail
+set imap_user = "tsu.yubo@gmail.com"
+set imap_pass = ""
+set smtp_url = "smtps://tsu.yubo@smtp.gmail.com:465/"
+set smtp_pass = $imap_pass
+
+#设置远程服务器和文件夹
+set folder = "imaps://imap.gmail.com:993"
+set spoolfile = "+INBOX"
+set record = "+[Gmail]/Sent Mails
+mailboxes = +INBOX
+set postponed = "+[Gmail]/Drafts"
+#自动建立imap连接
+unset imap_passive
+set certificate_file=~/Mail/certificates
+#设置退出提醒
+
+set quit = ask-yes
+
+#################################
+#告知mutt订阅的邮件和颜色
+#################################
+subscribe linux-kernel@vger.kernel.org lkml
+color index color42 default "~C linux-kernel@vger.kernel.org"
+color index brightcolor42 default "~N ~C linux-kernel@vger.kernel.org"
+
+subscribe netdev@vger.kernel.org
+color index color73 default "~C netdev@vger.kernel.org"
+color index brightcolor73 default "~N ~C netdev@vger.kernel.org"
+
+subscribe python-list@python.org
+color index color30 default " ~C python-list@python.org "
+color index brightcolor30 default "~N ~C python-list@python.org "
+
+subscribe linux-wireless@vger.kernel.org
+color index color3 default " ~C linux-wireless@vger.kernel.org "
+color index brightcolor3 default "~N ~C linux-wireless@vger.kernel.org "
+
+subscribe tutor@python.org
+color index color10 default " ~C tutor@python.org "
+color index brightcolor10 default "~N ~C  tutor@python.org"
+
+subscribe busybox@busybox.net
+color index color82 default " ~C  busybox@busybox.net"
+color index brightcolor82 default "~N ~C  busybox@busybox.net"
+
+subscribe neomutt-devel@neomutt.org
+color index color72 default " ~C neomutt-devel@neomutt.org "
+color index brightcolor72 default "~N ~C neomutt-devel@neomutt.org "
+
+subscribe netfilter-devel@vger.kernel.org
+color index color92 default " ~C netfilter-devel@vger.kernel.org "
+color index brightcolor92 default "~N ~C  netfilter-devel@vger.kernel.org"
+
+subscribe django-users@googlegroups.com
+color index color98 default " ~C  django-users"
+color index brightcolor98 default "~N ~C  django-users"
+
+subscribe submit@bugs.debian.org
+color index color67 default " ~C  submit_perl"
+color index brightcolor67 default "~N ~C  submit_perl"
+
+subscribe debian-perl@lists.debian.org
+
+subscribe kernelnewbies@kernelnewbies.org
+color index color67 default " ~C kernelnewbies@kernelnewbies.org "
+color index brightcolor67 default "~N ~C kernelnewbies@kernelnewbies.org "
+color index_author red default "~stsu.yubo"
+# 在主机中出现kerenl的标红
+
+subscribe noreply+feedproxy@google.com
+subscribe hackers@hackerrankmail.com
+
+#subscribe linux-kernel@vger.kernel.org
+
+#留出多少行显示邮件列表
+
+set index_format = "%4C %M  %Z %?GI?%GI& ? %[%d/%b]  %-20.19F %?K?%15.14K&            ? %?M?(%3M)&     ? %?X?¤& ? %s %> %?g?%g?"
+# %M 是一个线索的信件数量 (%4c)是邮件大小
+# 请参阅:https://www.neomutt.org/feature/index-color
