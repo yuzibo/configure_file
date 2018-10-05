@@ -1,0 +1,111 @@
+
+# Example NeoMutt config file for the index-color feature.
+
+# # Entire index line
+#color index white black '.*'''
+
+# Date field
+color index_date green default
+color index_flags red blue default
+
+# 复制模板
+#color index color42 default " ~C  "
+#color index brightcolor42 default "~N ~C  "
+
+###########################################
+# sidebar neomutt new feature
+##########################################
+
+# Should the Sidebar be shown?
+set sidebar_visible = no
+# # How wide should the Sidebar be in screen columns?
+#
+# # Note: Some characters, e.g. Chinese, take up two columns each.
+set sidebar_width = 20
+
+
+set pager_index_lines=8
+set auto_tag =yes
+hdr_order from to subject date
+#===我也没弄明白这两句有什么作用
+set ssl_starttls = yes
+set ssl_force_tls = yes
+#unset ssl_starttls
+set imap_keepalive = 300
+set mail_check = 120
+#set record="+sent" #set save sent-mail folder
+#set postponed="+postponed" # 放草稿
+#================================
+set text_flowed=yes
+set move=no #移动已读邮件
+#set signature=~/Mail/.signature
+score "~N" +4
+score "~f linuxnewbe" +2
+set fast_reply
+
+set check_new =yes
+set timeout = 600
+#====================
+#
+set sort_browser=alpha
+
+
+
+
+set editor="vim"
+
+#终端显示的代码
+set charset="utf-8"
+#set assumed_charset="utf-8:gb2312:big5"
+#set charset="utf-8"
+set rfc2047_parameters=yes
+#外发邮件使用的编码
+set send_charset="utf-8:us-ascii:gb2312"
+
+#auto view html
+auto_view  text/x-vcard text/html test/enriched
+# 排序
+set sort=threads
+set sort_aux=reverse-last-date
+
+# 回信时之前的引文符号
+set indent_str=">"
+
+#macro index,pager I '<shell-escape> fetchmail -v<enter>'
+#ontacts
+source ~/.mutt.alias
+set alias_file=~/.mutt.alias
+
+
+#color status
+#color status  white blue
+color status black green
+#当前行
+color indicator green blue
+#message head
+color hdrdefault  white blue
+color tilde default white
+
+
+# 回信时自动包含原文
+set include
+# 回信引文之前的符号
+set indent_str="-> "
+# 回信引文不用包含原文的信头
+set header=no
+# 自己在对方邮箱界面发件人栏中显示的内容
+# 请把这里的小括号()改成中括号<> :(
+
+# 设置键绑定 ,为了使用urlview.
+#macro pager \cb <pipe-entry>'urlview'<enter> 'Follow links with urlview'
+macro index,pager \cb "<pipe-message> urlscan<enter>" "call urlscan to extract URLs out of a message"
+macro attach,compose \cb "<pipe-entry> urlscan<enter>" "call urlscan to extract URLs out of a message"
+
+folder-hook 'qq.com' 'source ~/.mutt/account.qq'
+folder-hook 'gmail.com' 'source ~/.mutt/account.gmail'
+folder-hook '126.com' 'source ~/.mutt/account.126'
+macro index <f5> '<change-folder>imaps://imap.qq.com<enter>'
+macro index <f6> '<change-folder>imaps://imap.126.com<enter>'
+macro index <f7> '<change-folder>imaps://imap.gmail.com<enter>'
+
+
