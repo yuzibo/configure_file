@@ -8,6 +8,10 @@
 colorscheme eldar "我放在74xiamian,应该放在73
 " located in .vim/colors folder
 " i have installed cobalt, eldar
+" 2018-11-16 for putty paste and copy
+set paste
+set mouse=v
+set pastetoggle=<F9>
 
 let autosave=3
 "set background=dark "背景使用黑色
@@ -139,7 +143,7 @@ endfunction
 
 autocmd BufNewFile *.md call <SID>SetupNewMdFile()
 function s:SetupNewMdFile()
-	    execute "normal i---\<C-M>\<C-C>xititle: \<C-M>\<C-C>xicategory: \<C-M>\<C-C>xilayout: \<C-M>\<C-C>xi---"
+	    execute "normal i---\<C-M>\<C-C>xititle: \<C-M>\<C-C>xicategory: \<C-M>\<C-C>xilayout: \<C-M>\<C-C>xi---\<C-M>\<C-C>xi* content \<C-M>\<C-C>xi{:toc}"
     autocmd BufNewFile * normal G
 endfunction
 
