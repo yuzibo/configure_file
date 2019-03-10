@@ -1,0 +1,62 @@
+[global_config]
+  sticky = True
+  title_inactive_fg_color = "#3465a4"
+[keybindings]
+[layouts]
+  [[default]]
+    [[[child0]]]
+      order = 0
+      parent = ""
+      position = 0:25
+      size = 1366, 708
+      type = Window
+    [[[child1]]]
+      order = 0
+      parent = child0
+      position = 632
+      type = HPaned
+    [[[child2]]]
+      order = 0
+      parent = child1
+      position = 354
+      type = VPaned
+  [[simples]]
+    [[[child0]]]
+      order = 0
+      parent = ""
+      position = 0:25
+      size = 715, 694
+      type = Window
+    [[[child1]]]
+      order = 0
+      parent = child0
+      position = 348
+      type = VPaned
+    [[[terminal2]]]
+      command = cd ~/work; bash
+      order = 0
+      parent = child1
+      profile = default
+      type = Terminal
+    [[[terminal3]]]
+      command = cd ~/work; bash
+      order = 1
+      parent = child1
+      profile = default
+      type = Terminal
+[plugins]
+[profiles]
+  [[default]]
+    background_darkness = 0.73
+    background_type = transparent
+    cursor_color = "#3036ec"
+    custom_command = tmux
+    font = Dejavu Sans Mono 11
+    foreground_color = "#00ff00"
+    login_shell = True
+    palette = "#000000:#cd0000:#00cd00:#cdcd00:#0000ee:#cd00cd:#00cdcd:#e5e5e5:#7f7f7f:#ff0000:#00ff00:#ffff00:#5c5cff:#ff00ff:#00ffff:#ffffff"
+    scrollback_infinite = True
+    scrollbar_position = hidden
+    use_system_font = False
+    visible_bell = True
+  [[新配置]]
