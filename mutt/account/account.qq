@@ -1,3 +1,8 @@
+#   note:!!!!
+#  If you use qq mail to send mail with smtp or imap3, and
+#   you MUST APPLY for indepent passwd, refer to:
+#  https://service.mail.qq.com/cgi-bin/help?subtype=1&&id=28&&no=1001256
+#
 set realname="Bo YU"
 set use_from=yes
 
