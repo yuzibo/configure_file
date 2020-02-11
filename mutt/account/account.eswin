@@ -1,0 +1,37 @@
+#
+#  This is eswin accout for my inbox configure options.
+#  in particular _SMTP-URL_
+#
+set realname="Bo YU"
+set use_from=yes
+
+#set ssl_starttls = yes
+set ssl_force_tls = yes
+set smtp_authenticators = "LOGIN"
+set smtp_url = "smtp://yubo@eswin.com@smtp.eswin.com:25"
+set from="yubo@eswin.com"
+set smtp_pass = ""
+#set ssl_verify_host = no
+#set ssl_verify_dates = no
+#set envelope_from=yes
+#set smtp_auth_user= "yubo@eswin.com"
+#set smtp_auth_type = "PLAIN"
+# 设置smtp服务器
+#set smtp_url = "smtp.eswin.com:25"
+#set smtp_sasl_security_options = noanonymous
+#set smtp_authenticators = "PLAIN"
+# 当时还有一个配置选项是PLAIN。但是报错
+# 注意，这个密码不是邮箱的正式登陆密码
+
+#设置远程服务器和文件夹
+set imap_user = "yubo@eswin.com"
+set imap_pass = ""
+set folder = "imaps://imap.eswin.com:995"
+set imap_keepalive = 300
+set mail_check = 120
+
+set spoolfile = "+收件箱"
+set postponed="+[eswin]/Drafts"
+#set record = "+[126]/收件箱"
+mailboxes = +INBOX
+set certificate_file=~/Mail/certificates
