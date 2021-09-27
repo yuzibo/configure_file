@@ -19,25 +19,32 @@ set nu
 "set go=  去掉工具栏了：
 setlocal fo+=aw
 syntax on  "代码高亮
-autocmd InsertLeave * se nocul  " 用浅色高亮当前行
-autocmd InsertEnter * se cul    " 用浅色高亮当前行
+" 高亮当前行
+set cursorline
+set cursorcolumn
 set ruler           " 显示标尺
 set showcmd         " 输入的命令显示出来，看的清楚些
 " 在处理未保存或只读文件的时候，弹出确认
 set confirm
+" "缩进特性
+" 为特定文件类型载入相关缩进文件
+filetype indent on
 " 自动缩进
-set autoindent
+"set autoindent
 set number
 set cindent
 " Tab键的宽度
-set tabstop=8
-" 统一缩进为8
+set tabstop=4
+" 统一缩进为4
 set softtabstop=8
-set shiftwidth=8
-" 不要用空格代替制表符
-set noexpandtab
+set shiftwidth=4
+" 用空格代替制表符
+" It is true for gerrit
+set expandtab
 " 在行和段开始处使用制表符
 set smarttab
+
+
 " 显示行号
 set number
 " 历史记录数
@@ -85,8 +92,6 @@ set cmdheight=2
 filetype on
 " 载入文件类型插件
 filetype plugin on
-" 为特定文件类型载入相关缩进文件
-filetype indent on
 " 保存全局变量
 set viminfo+=!
 " 带有如下符号的单词不要被换行分割

@@ -1,90 +1,83 @@
 #=====================
 #关于msmtp的设置
-#set sendmail=/usr/bin/msmtp
-set use_from=yes
-set realname="YU Bo"
 
-set from=tsu.yubo@gmail.com
+set use_from=yes
+set realname="vimer"
+
+set from   =  "tsu.yubo@gmail.com"
 #set envelope_from=yes
-#设置Gmail账户和密码,imap和gmail
+
+#设置Gmail账户和密码:imap和gmail
 set imap_user = "tsu.yubo@gmail.com"
-set imap_pass = "vioeojptrupncdwi"
+set imap_pass = "" # need fill it 
+
+# spoolfile must be set to the IMAP server
+set spoolfile = "imaps://imap.gmail.com:993"
+
+mailboxes $spoolfile
+
 set smtp_url = "smtps://tsu.yubo@smtp.gmail.com:465/"
 set smtp_pass = $imap_pass
 
 #设置远程服务器和文件夹
-set folder = "imaps://imap.gmail.com:993"
-set spoolfile = "+INBOX"
-set record = "+[Gmail]/Sent Mails
-mailboxes = +INBOX
-set postponed = "+[Gmail]/Drafts"
+set folder = $spoolfile
+#set  = "+INBOX"
+set record = "+Sent"
+set postponed = "+Drafts"
+#set trash = "+Trash"
 #自动建立imap连接
 unset imap_passive
-set certificate_file=~/Mail/certificates
 #设置退出提醒
-set quit = ask-yes
-#告知mutt订阅的邮件
-#subscribe linux-kernel@vger.kernel.org lkml
-#subscribe netdev@vger.kernel.org
-#留出多少行显示邮件列表
-set pager_index_lines=8
 
+set quit = ask-yes
+
+color status brightgreen red
+
+set editor="vim"
+
+# Example NeoMutt config file for the index-color feature.
+
+# # Entire index line
+#color index white black '.*'''
+
+# Date field
+color index_date green default
+color index_flags red blue default
+
+# 复制模板
+#color index color42 default " ~C  "
+#color index brightcolor42 default "~N ~C  "
+
+###########################################
+# sidebar neomutt new feature
+##########################################
+
+# Should the Sidebar be shown?
+set sidebar_visible = no
+# set sidebar_visible = yes
+# # How wide should the Sidebar be in screen columns?
+#
+# # Note: Some characters, e.g. Chinese, take up two columns each.
+set sidebar_width = 20
+
+
+set pager_index_lines=8
 set auto_tag =yes
 hdr_order from to subject date
 
-
-
-#===我也没弄明白这两句有什么作用
-set ssl_starttls = yes
-set ssl_force_tls = yes
-#unset ssl_starttls
 set imap_keepalive = 300
 set mail_check = 120
-#本地缓存
-set header_cache = ~/Mail/cache/headers
-set message_cachedir = ~/Mail/cache/bodies
-#=============
-#关于信箱的设置配合getmail使用的时候
-#set spoolfile=$HOME/Mail"
-#set folder="~/Mail" # E-mail folder
-#set mbox_type=Maildir # save SEEN message
-#set header_cache=~/Mail/.hcache
-#set record="+sent" #set save sent-mail folder
-#set postponed="+postponed" # 放草稿
 #================================
 set text_flowed=yes
 set move=no #移动已读邮件
-#set signature=~/Mail/.signature
-score "~N" +4
-score "~f linuxnewbe" +2
 set fast_reply
 
-# subscribe kernelnewbies@kernelnewbies.org
-#让mutt监视下面几个邮箱，并随时报告新邮件
-#mailboxes "=gmail"
-#mailboxes "=inbox"
-#mailboxes "=126"
-#mailboxes "=qq"
-#mailboxes "=outlook"
 set check_new =yes
 set timeout = 600
 #====================
 #
 set sort_browser=alpha
 
-##############################
-#使用下面的简单配置一定要小心
-#只使用这几句简单的就可以把网易邮箱的东西弄到本地来
-#set pop_user=yuzibode@126.com
-#set pop_pass="yuzibode25836936"
-#set pop_host=pops://pop.126.com
-#set pop_last=yes
-#####################
-#
-
-
-
-set editor="vim"
 
 #终端显示的代码
 set charset="utf-8"
@@ -105,8 +98,7 @@ set indent_str=">"
 
 #macro index,pager I '<shell-escape> fetchmail -v<enter>'
 #ontacts
-source ~/Mail/.mutt.alias
-set alias_file=~/Mail/.mutt.alias
+set alias_file=~/.mutt.alias
 
 
 #color status
@@ -121,16 +113,23 @@ color tilde default white
 
 # 回信时自动包含原文
 set include
-# 回信引文之前的符号
-set indent_str="-> "
 # 回信引文不用包含原文的信头
 set header=no
 # 自己在对方邮箱界面发件人栏中显示的内容
-# 请把这里的小括号()改成中括号<> :(
-my_hdr From:  <tsu.yubo@gmail.com>
 
 # 设置键绑定 ,为了使用urlview.
 #macro pager \cb <pipe-entry>'urlview'<enter> 'Follow links with urlview'
-macro index,pager \cb "<pipe-message> urlscan<enter>" "call urlscan to extract URLs out of a message"
-macro attach,compose \cb "<pipe-entry> urlscan<enter>" "call urlscan to extract URLs out of a message"
+
+#========================
+# ignore
+# ======================
+#ignore *
+unignore from date subject to
+#unignore x-mailer
+#unignore x-spam-status
+#unignore x-spam-report
+
+# reply all
+bind index,pager g group-reply
+
 
