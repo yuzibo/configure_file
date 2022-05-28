@@ -1,0 +1,12 @@
+DEBUILD_LINTIAN=yes
+
+# -E include experimental tags
+DEBUILD_LINTIAN_OPTS="-i -EvIL +pedantic --show-overrides"
+
+#-uc -us代表不要sign key
+DEBUILD_DPKG_BUILDPACKAGE_OPTS="-uc -us --changes-option=-sa"
+
+# DEBSIGN_KEYID可填可不填
+DEBSIGN_KEYID="xx"
+
+DEB_BUILD_OPTIONS="parallel=10"
